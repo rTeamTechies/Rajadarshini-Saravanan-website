@@ -654,6 +654,194 @@
       text-align: center;
     }
 
+    /* Testimonials – horizontal scroll with animations */
+    .testimonials-scroll {
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding: 40px 0 24px;
+      margin: 0 -4px;
+    }
+
+    .testimonials-scroll::-webkit-scrollbar {
+      height: 8px;
+    }
+
+    .testimonials-scroll::-webkit-scrollbar-track {
+      background: rgba(75, 16, 37, 0.06);
+      border-radius: 999px;
+    }
+
+    .testimonials-scroll::-webkit-scrollbar-thumb {
+      background: rgba(217, 180, 106, 0.5);
+      border-radius: 999px;
+    }
+
+    .testimonials-scroll::-webkit-scrollbar-thumb:hover {
+      background: var(--gold);
+    }
+
+    .testimonials-grid {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 24px;
+      width: max-content;
+      padding: 4px 4px 4px 0;
+      margin-top: 0;
+    }
+
+    .testimonial-card {
+      flex: 0 0 320px;
+      min-width: 280px;
+      max-width: 90vw;
+      scroll-snap-align: start;
+      border-radius: var(--radius-lg);
+      background: var(--card-bg);
+      border: 1px solid rgba(75, 16, 37, 0.06);
+      padding: 44px 20px 24px;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.06);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 0;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      animation: testimonial-enter 0.6s ease backwards;
+    }
+
+    .testimonial-card:nth-child(1) { animation-delay: 0.05s; }
+    .testimonial-card:nth-child(2) { animation-delay: 0.12s; }
+    .testimonial-card:nth-child(3) { animation-delay: 0.19s; }
+    .testimonial-card:nth-child(4) { animation-delay: 0.26s; }
+    .testimonial-card:nth-child(5) { animation-delay: 0.33s; }
+
+    .testimonial-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 52px rgba(75, 16, 37, 0.1);
+    }
+
+    @keyframes testimonial-enter {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Opening quote – top left */
+    .testimonial-card::before {
+      content: "\201C";
+      position: absolute;
+      top: 18px;
+      left: 20px;
+      font-family: "Playfair Display", serif;
+      font-size: 48px;
+      line-height: 1;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    /* Closing quote – bottom right */
+    .testimonial-card::after {
+      content: "\201D";
+      position: absolute;
+      bottom: 18px;
+      right: 20px;
+      font-family: "Playfair Display", serif;
+      font-size: 48px;
+      line-height: 1;
+      color: var(--gold);
+      opacity: 0.6;
+    }
+
+    /* Avatar – centered above card, overlapping top */
+    .testimonial-avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #f6eee6 0%, #ebe0d6 100%);
+      border: 3px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 0 8px 24px rgba(75, 16, 37, 0.15);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: absolute;
+      top: -32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+    }
+
+    .testimonial-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .testimonial-avatar-initial {
+      font-family: "Playfair Display", serif;
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--maroon);
+      line-height: 1;
+    }
+
+    .testimonial-avatar-icon {
+      width: 32px;
+      height: 32px;
+      color: var(--maroon);
+      opacity: 0.7;
+    }
+
+    .testimonial-quote {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.65;
+      margin-top: 0;
+      padding: 0 4px;
+      flex-grow: 1;
+      text-align: center;
+    }
+
+    .testimonial-attribution {
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(75, 16, 37, 0.08);
+      text-align: center;
+      width: 100%;
+    }
+
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 14px;
+      color: var(--maroon);
+      letter-spacing: 0.02em;
+    }
+
+    .testimonial-role {
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      margin-top: 2px;
+    }
+
+    .testimonials-hint {
+      margin-top: 10px;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
     .playlist-link {
       margin-top: 8px;
       font-size: 12px;
@@ -1023,6 +1211,92 @@
             </p>
           </div>
         </div>
+      </section>
+
+      <!-- Testimonials -->
+      <section id="testimonials">
+        <div class="section-label">Testimonials</div>
+        <div class="section-title">What People Say</div>
+
+        <div class="testimonials-scroll">
+          <div class="testimonials-grid">
+          <div class="testimonial-card">
+            <div class="testimonial-avatar" aria-hidden="true">
+              <svg class="testimonial-avatar-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </div>
+            <p class="testimonial-quote">
+              Rajadarshini's approach to Natyoga Darshanam transformed how I understand the connection between breath and movement. Her classes are both rigorous and deeply nurturing.
+            </p>
+            <div class="testimonial-attribution">
+              <div class="testimonial-name">Priya M.</div>
+              <div class="testimonial-role">Student, TAT Yoga Studio</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-avatar" aria-hidden="true">
+              <svg class="testimonial-avatar-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </div>
+            <p class="testimonial-quote">
+              A rare artist who bridges classical precision with contemporary sensibility. Working with her on our UK tour was an honour — every performance was luminous.
+            </p>
+            <div class="testimonial-attribution">
+              <div class="testimonial-name">James L.</div>
+              <div class="testimonial-role">Curator, London</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-avatar" aria-hidden="true">
+              <svg class="testimonial-avatar-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </div>
+            <p class="testimonial-quote">
+              Her teaching goes beyond technique. She builds presence, clarity and a sense of embodiment that stays with you long after the session ends.
+            </p>
+            <div class="testimonial-attribution">
+              <div class="testimonial-name">Anitha R.</div>
+              <div class="testimonial-role">Bharatanatyam practitioner, Chennai</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-avatar" aria-hidden="true">
+              <svg class="testimonial-avatar-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </div>
+            <p class="testimonial-quote">
+              The Natwar Gopikrishna Award is so well deserved. Rajadarshini brings integrity, grace and a true vision to the form. A role model for the next generation.
+            </p>
+            <div class="testimonial-attribution">
+              <div class="testimonial-name">Dr. K. Suresh</div>
+              <div class="testimonial-role">Arts educator</div>
+            </div>
+          </div>
+
+          <div class="testimonial-card">
+            <div class="testimonial-avatar" aria-hidden="true">
+              <svg class="testimonial-avatar-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+              </svg>
+            </div>
+            <p class="testimonial-quote">
+              From the first workshop I attended, I felt the depth of her practice. She makes the intersection of yoga and dance feel inevitable and alive.
+            </p>
+            <div class="testimonial-attribution">
+              <div class="testimonial-name">Elena V.</div>
+              <div class="testimonial-role">Yoga teacher, Europe</div>
+            </div>
+          </div>
+          </div>
+        </div>
+        <p class="testimonials-hint">Scroll or swipe to see more</p>
       </section>
 
       <!-- Offerings -->
