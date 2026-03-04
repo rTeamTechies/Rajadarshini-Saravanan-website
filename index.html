@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Rajadarshini Saravanan – Bharatanatyam Artist & Yoga Educator</title>
+  <title>Natyoga Darshanam | Rajadarshini Saravanan</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Portfolio of Rajadarshini Saravanan – Bharatanatyam artist, movement researcher, yoga & wellness educator, and founder of TAT Yoga Studio."
+    content="Natyoga Darshanam – Integrative movement discipline uniting Yoga and Natya. Founder Rajadarshini Saravanan. Vision, mission, training & contact."
   />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -236,6 +236,30 @@
       pointer-events: none;
     }
 
+    /* Hero with dancer image: dark left for text, reveal right */
+    .hero-bg-dancer::after {
+      background: linear-gradient(
+        95deg,
+        rgba(15, 25, 45, 0.92) 0%,
+        rgba(15, 25, 45, 0.7) 40%,
+        rgba(15, 25, 45, 0.35) 70%,
+        transparent 100%
+      );
+    }
+
+    .hero-tagline-poem {
+      font-family: "Playfair Display", serif;
+      font-size: clamp(15px, 2.2vw, 18px);
+      line-height: 1.85;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-tagline-sub {
+      font-size: 14px;
+      opacity: 0.9;
+      margin-top: -8px;
+    }
+
     @keyframes heroImageReveal {
       from {
         opacity: 0;
@@ -245,6 +269,14 @@
         opacity: 1;
         transform: scale(1);
       }
+    }
+
+    .hero-bg-dancer img {
+      animation: heroImageReveal 1.4s ease-out forwards, heroDancerFloat 18s ease-in-out 2s infinite;
+    }
+    @keyframes heroDancerFloat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.03); }
     }
 
     .hero-content {
@@ -454,6 +486,93 @@
       gap: 24px;
     }
 
+    .about-intro { margin-bottom: 24px; }
+
+    /* Vision / Mission / Objectives – side menu + content */
+    .vm-layout {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+    .vm-sidebar {
+      position: sticky;
+      top: 100px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .vm-sidebar-btn {
+      display: block;
+      width: 100%;
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--muted);
+      background: transparent;
+      border: 1px solid transparent;
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+      font-family: inherit;
+    }
+    .vm-sidebar-btn:hover {
+      color: var(--maroon-soft);
+      background: rgba(75, 16, 37, 0.04);
+    }
+    .vm-sidebar-btn.active {
+      color: var(--maroon);
+      background: rgba(217, 180, 106, 0.12);
+      border-color: rgba(217, 180, 106, 0.4);
+      font-weight: 600;
+    }
+    .vm-content {
+      min-height: 0;
+    }
+    .vm-panel {
+      display: none;
+      padding: 24px 22px;
+      border-radius: var(--radius-lg);
+      background: var(--card-bg);
+      border: 1px solid rgba(75, 16, 37, 0.06);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.03);
+      animation: vmPanelIn 0.3s ease;
+    }
+    .vm-panel.active {
+      display: block;
+    }
+    @keyframes vmPanelIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .vm-panel .card-title {
+      margin-bottom: 12px;
+    }
+    .vm-note { font-size: 13px; color: var(--muted); margin-top: 12px; }
+    .two-col-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 8px 24px;
+    }
+    @media (max-width: 768px) {
+      .vm-layout {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .vm-sidebar {
+        position: static;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .vm-sidebar-btn {
+        flex: 1 1 auto;
+        min-width: 120px;
+        text-align: center;
+      }
+    }
+
     .card {
       border-radius: var(--radius-lg);
       background: var(--card-bg);
@@ -502,187 +621,255 @@
       margin-top: 8px;
       font-size: 13px;
       color: var(--muted);
+      list-style: none;
+      padding-left: 0;
     }
 
     .list li {
-      margin-bottom: 4px;
+      margin-bottom: 10px;
+      padding-left: 1.5em;
+      position: relative;
+    }
+
+    .list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      opacity: 0.9;
     }
 
     .list li span {
       color: var(--text);
     }
 
-    /* Offerings */
-    .offerings-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
+    /* Offerings – horizontal scroll cards (pricing-style) */
+    .offerings-scroll {
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding: 8px 0 24px;
+      margin: 0 -4px;
     }
-
+    .offerings-scroll::-webkit-scrollbar { height: 8px; }
+    .offerings-scroll::-webkit-scrollbar-track { background: rgba(75, 16, 37, 0.06); border-radius: 999px; }
+    .offerings-scroll::-webkit-scrollbar-thumb { background: rgba(217, 180, 106, 0.5); border-radius: 999px; }
+    .offerings-cards {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 20px;
+      width: max-content;
+      padding: 4px 4px 4px 0;
+    }
     .offering-card {
+      flex: 0 0 300px;
+      min-width: 280px;
+      max-width: 90vw;
+      scroll-snap-align: start;
       border-radius: var(--radius-lg);
       background: #fffdf9;
-      border: 1px solid rgba(75, 16, 37, 0.06);
-      padding: 14px 13px;
+      border: 1px solid rgba(75, 16, 37, 0.08);
+      padding: 20px 18px 20px;
       font-size: 13px;
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.03);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.04);
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 10px;
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
     }
-
+    .offering-card:hover {
+      box-shadow: 0 16px 36px rgba(75, 16, 37, 0.08);
+      transform: translateY(-4px);
+    }
     .offering-tag {
       font-size: 10px;
       text-transform: uppercase;
       letter-spacing: 0.16em;
       color: var(--muted);
     }
-
     .offering-title {
       font-weight: 600;
       color: var(--maroon);
+      font-size: 15px;
     }
-
     .offering-body {
       font-size: 12px;
       color: var(--muted);
+      line-height: 1.55;
+      flex: 1;
     }
-
-    .offering-footer {
+    .offering-cta {
       margin-top: auto;
-      font-size: 11px;
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      color: #6a1634;
+      padding-top: 8px;
+    }
+    .offering-cta a {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 999px;
+      background: linear-gradient(120deg, #4b1025, #6a1634);
+      color: #fdf6ec;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      text-align: center;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .offering-cta a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(75, 16, 37, 0.3);
     }
 
-    /* Gallery slider */
+    /* Gallery – overlapping carousel with auto-scroll */
     .gallery-wrapper {
       border-radius: var(--radius-lg);
-      background: #fffdf9;
-      border: 1px solid rgba(75, 16, 37, 0.06);
-      padding: 18px 18px 16px;
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.03);
+      padding: 24px 0;
     }
-
-    .gallery-main {
-      position: relative;
-      border-radius: 20px;
+    .gallery-carousel-wrap {
       overflow: hidden;
-      background: #f3e4d8;
-      min-height: 220px;
+      margin: 0 -20px;
+      padding: 20px 20px 16px;
     }
-
-    .gallery-slide {
-      position: absolute;
-      inset: 0;
-      opacity: 0;
-      transition: opacity 0.35s ease;
+    .gallery-carousel-track {
+      display: flex;
+      align-items: center;
+      gap: 0;
+      transition: transform 0.6s ease;
+      will-change: transform;
     }
-
-    .gallery-slide img {
+    .gallery-carousel-item {
+      flex: 0 0 340px;
+      width: 340px;
+      margin-right: -80px;
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      transition: transform 0.3s ease, z-index 0.3s ease;
+      position: relative;
+      z-index: 1;
+    }
+    .gallery-carousel-item:hover {
+      z-index: 3;
+      transform: scale(1.04);
+    }
+    .gallery-carousel-item img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       display: block;
+      aspect-ratio: 16 / 9;
+      min-height: 260px;
+      background: #08040a;
     }
-
-    .gallery-slide.active {
-      opacity: 1;
-      position: relative;
-    }
-
-    .gallery-controls {
+    .gallery-carousel-dots {
       display: flex;
       justify-content: center;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 14px;
     }
-
-    .gallery-dot {
-      width: 28px;
-      height: 28px;
-      border-radius: 999px;
-      border: 1px solid rgba(75, 16, 37, 0.18);
-      background: #fffaf4;
-      font-size: 12px;
+    .gallery-carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(75, 16, 37, 0.2);
       cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      transition: background 0.25s ease, transform 0.25s ease;
     }
-
-    .gallery-dot.active {
-      background: linear-gradient(120deg, #4b1025, #6a1634);
-      color: #fdf6ec;
-      border-color: rgba(217, 180, 106, 0.9);
-      box-shadow: 0 8px 18px rgba(75, 16, 37, 0.35);
+    .gallery-carousel-dot.active {
+      background: var(--maroon);
+      transform: scale(1.2);
     }
-
     .gallery-note {
       margin-top: 8px;
       font-size: 11px;
       color: var(--muted);
       text-align: center;
     }
-
-    /* Playlist */
-    .playlist-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
-      gap: 20px;
+    @media (max-width: 640px) {
+      .gallery-carousel-item {
+        flex: 0 0 280px;
+        width: 280px;
+        margin-right: -60px;
+      }
+      .gallery-carousel-item img {
+        min-height: 220px;
+      }
     }
 
-    .playlist-embed {
-      border-radius: 18px;
-      overflow: hidden;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.18);
-      background: #000;
+    /* Playlist – embed with autoplay (muted) + fallback CTA */
+    .playlist-intro {
+      margin-bottom: 12px;
+      max-width: 560px;
     }
-
+    .playlist-why-note {
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 560px;
+      margin-bottom: 20px;
+      line-height: 1.55;
+    }
     .playlist-cta {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 260px;
-      border-radius: 18px;
-      background: linear-gradient(145deg, #1a0a0a 0%, #2d1515 100%);
+      gap: 14px;
+      min-height: 520px;
+      border-radius: 20px;
+      background: #1a0a0a url("assets/playlist-backdrop.png") center / cover no-repeat;
       border: 1px solid rgba(217, 180, 106, 0.25);
       color: #fdf5ea;
       text-decoration: none;
-      padding: 24px;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      padding: 24px 32px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
     }
-
+    .playlist-cta::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(26, 10, 10, 0.88) 0%, rgba(45, 21, 21, 0.75) 50%, rgba(26, 10, 10, 0.85) 100%);
+      border-radius: 20px;
+      pointer-events: none;
+    }
+    .playlist-cta .playlist-cta-icon,
+    .playlist-cta .playlist-cta-text,
+    .playlist-cta .playlist-cta-hint {
+      position: relative;
+      z-index: 1;
+    }
     .playlist-cta:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 20px 48px rgba(0, 0, 0, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 56px rgba(0, 0, 0, 0.4);
       color: #fdf5ea;
     }
-
     .playlist-cta-icon {
-      width: 56px;
-      height: 56px;
+      width: 72px;
+      height: 72px;
       border-radius: 50%;
       background: rgba(217, 180, 106, 0.2);
       border: 2px solid rgba(217, 180, 106, 0.6);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 22px;
+      font-size: 28px;
       color: var(--gold);
-      padding-left: 4px;
+      padding-left: 6px;
     }
-
     .playlist-cta-text {
-      font-size: 16px;
+      font-size: 18px;
       font-weight: 600;
       letter-spacing: 0.06em;
     }
-
     .playlist-cta-hint {
       font-size: 11px;
       opacity: 0.85;
@@ -695,6 +882,11 @@
       font-size: 12px;
       color: var(--muted);
       text-align: center;
+    }
+    .playlist-fallback-note a {
+      color: var(--maroon-soft);
+      text-decoration: underline;
+      text-underline-offset: 2px;
     }
 
     /* Testimonials – horizontal scroll with animations */
@@ -1054,8 +1246,7 @@
     /* Responsive */
     @media (max-width: 900px) {
       .two-col,
-      .contact,
-      .playlist-grid {
+      .contact {
         grid-template-columns: minmax(0, 1fr);
       }
 
@@ -1065,10 +1256,6 @@
 
       .hero-content {
         padding: 40px 20px 48px;
-      }
-
-      .offerings-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .nav-links {
@@ -1089,10 +1276,6 @@
         padding: 32px 16px 40px;
       }
 
-      .offerings-grid {
-        grid-template-columns: minmax(0, 1fr);
-      }
-
       .contact {
         padding: 18px 16px 16px;
       }
@@ -1109,18 +1292,18 @@
             <img src="assets/logo1.jpeg" alt="Rajadarshini Saravanan" />
           </div>
           <div class="nav-title">
-            <div class="nav-title-main">Rajadarshini Saravanan</div>
-            <div class="nav-title-sub">Movement • Breath • Embodiment</div>
+            <div class="nav-title-main">Natyoga Darshanam</div>
+            <div class="nav-title-sub">Natya + Yoga</div>
           </div>
         </div>
         <div class="nav-links">
-          <a href="#about">Profile</a>
+          <a href="#about">About Us</a>
           <a href="#gallery">Gallery</a>
           <a href="#playlist">Videos</a>
           <a href="#contact">Contact</a>
-          <button class="nav-cta" type="button">
-            Artist Portfolio
-          </button>
+          <a href="#offerings" class="nav-cta">
+            Our Offerings
+          </a>
         </div>
       </div>
     </header>
@@ -1129,83 +1312,102 @@
     <main>
       <div class="hero-wrap">
         <section class="hero" id="top">
-          <div class="hero-bg">
-            <img src="assets/profile.png" alt="" />
+          <div class="hero-bg hero-bg-dancer">
+            <img src="assets/hero-dancer.png" alt="Rajadarshini Saravanan – Bharatanatyam in Natyoga" />
           </div>
           <div class="hero-content">
             <div class="hero-inner">
               <div class="eyebrow">
-                Bharatanatyam Artist • Movement Researcher • Yoga & Wellness Educator
+                Yoga · Natya · Embodied awareness
               </div>
-              <h1 class="hero-title">Rajadarshini Saravanan</h1>
-              <p class="hero-tagline">
-                Internationally acclaimed Bharatanatyam dancer, yoga practitioner and educator with
-                20+ years of performance and teaching experience across India, Europe, Asia, the UAE
-                and the United Kingdom. Founder of TAT Yoga Studio, she explores the intersection of
-                classical dance, yoga and body–kinesthetics, redefining the art of movement and stillness.
+              <h1 class="hero-title">Natyoga Darshanam</h1>
+              <p class="hero-tagline hero-tagline-poem">
+                The body is a temple.<br />
+                The movement is a prayer.<br />
+                The dancer is a channel of expression.
+              </p>
+              <p class="hero-tagline hero-tagline-sub">
+                An integrative movement discipline uniting the ancient sciences of Yoga and Natya — from the Yogasutra of Patanjali and the Natyashastra of Bharatamuni.
               </p>
 
               <div class="highlight-chips">
-                <span class="chip">Natwar Gopikrishna National Award – 2025</span>
-                <span class="chip">Founder, TAT Yoga Studio</span>
-                <span class="chip">300+ performances worldwide</span>
-                <span class="chip">Parivartan Grant – Performing Spaces Now & Then</span>
+                <span class="chip">Yato Hasta Tato Drishti</span>
+                <span class="chip">Founder – Rajadarshini Saravanan</span>
+                <span class="chip">Injury-conscious · Research-driven</span>
               </div>
 
               <div class="hero-cta-row">
                 <a href="#about" class="btn-primary">
                   <span class="icon">●</span>
-                  Artist Profile & Career Highlights
+                  About Us · Vision & Mission
                 </a>
-                <span class="btn-ghost">Bharatanatyam • Yoga • Movement</span>
+                <a href="#offerings" class="btn-ghost">Our Offerings</a>
               </div>
 
               <p class="hero-subnote">
-                Based in <strong>Chennai, India</strong> · Teaching and performing across India, Europe, Asia, UAE & UK.
+                <strong>Natyoga Darshanam</strong> · Preservation, education &amp; research for the artistic community.
               </p>
             </div>
           </div>
-          <a href="#about" class="hero-scroll-hint" aria-label="Scroll to profile">
+          <a href="#about" class="hero-scroll-hint" aria-label="Scroll to About Us">
             <span class="hero-scroll-icon" aria-hidden="true"></span>
             Scroll
           </a>
         </section>
       </div>
 
-      <!-- About / Profile Summary -->
+      <!-- About Us – Vision, Mission, Objectives -->
       <section id="about">
-        <div class="section-label">Profile Summary</div>
-        <div class="section-title">Artist • Educator • Interdisciplinary Practitioner</div>
+        <div class="section-label">About Us</div>
+        <div class="section-title">Natyoga Darshanam</div>
 
-        <div class="two-col">
-          <div class="card">
-            <div class="card-title">About Rajadarshini</div>
-            <div class="card-heading">
-              Bharatanatyam, Yoga & the Architecture of Moving Bodies
-            </div>
-            <p>
-              Rajadarshini Saravanan is an internationally acclaimed Bharatanatyam dancer, yoga
-              practitioner, and educator with over two decades of experience across India, Europe,
-              Asia, the UAE and the UK. Trained under Dr. Smt. Sheela Unnikrishnan at Sridevi Nrithyalaya,
-              she has performed in more than 300 productions worldwide and mentors students through
-              a practice that bridges tradition, science and mindfulness.
-            </p>
-            <div class="pill-row">
-              <span class="pill">Disciple of Dr. Smt. Sheela Unnikrishnan</span>
-              <span class="pill">20+ years of intensive training</span>
-              <span class="pill">International performances & teaching</span>
-            </div>
+        <div class="card about-intro">
+          <div class="card-title">Integrative movement discipline</div>
+          <div class="card-heading">
+            Yoga (union and awareness) + Natya (dance and expression)
           </div>
+          <p>
+            Natyoga Darshanam unites the ancient sciences of Yoga and Natya into a holistic pathway of embodied transformation. Rooted in the <strong>Yogasutra</strong> of Sage Patanjali and the <strong>Natyashastra</strong> of Bharatamuni, it is not merely a dance pedagogy or a yoga system — it is a transformative approach that trains the nervous system, refines expressive depth, and restores joy in artistic embodiment. Founded by <strong>Rajadarshini Saravanan</strong> — Bharatanatyam dancer, yoga practitioner, movement researcher &amp; educator — to promote preservation, education, research, and the collective upliftment of the artistic community beyond race.
+          </p>
+        </div>
 
-          <div class="card">
-            <div class="card-title">Career Highlights</div>
-            <div class="card-heading">Awards, Roles & Grants</div>
-            <ul class="list">
-              <li><span>Natwar Gopikrishna National Award (2025)</span> – for Bharatanatyam by AIDA International, supported by the Ministry of Culture, Government of India.</li>
-              <li><span>Founder, TAT Yoga Studio</span> – offering online and in-person training to students across India, Europe, Asia and the UK.</li>
-              <li><span>Faculty (2013–2022), Sridevi Nrithyalaya</span> – mentoring students and assisting in large-scale choreographic works.</li>
-              <li><span>Parivartan Grant (2023–2024)</span> – "Performing Spaces Now & Then", an interdisciplinary project bridging architecture, dance and ecology.</li>
-            </ul>
+        <div class="vm-layout">
+          <nav class="vm-sidebar" aria-label="Vision, Mission, Objectives">
+            <button type="button" class="vm-sidebar-btn active" data-vm="vision">Vision</button>
+            <button type="button" class="vm-sidebar-btn" data-vm="mission">Mission</button>
+            <button type="button" class="vm-sidebar-btn" data-vm="objectives">Objectives</button>
+          </nav>
+          <div class="vm-content">
+            <div class="vm-panel active" id="vm-vision">
+              <div class="card-title">Vision</div>
+              <p>
+                To establish Natyoga Darshanam as a globally recognised integrative movement institution that harmonises yoga, classical dance, and embodied awareness, nurturing injury-free, emotionally intelligent, and spiritually aligned dancers who experience stillness within dynamic movement.
+              </p>
+              <p class="vm-note">Natyoga Darshanam was founded to promote preservation, education, research, and the collective upliftment of the artistic community beyond race.</p>
+            </div>
+            <div class="vm-panel" id="vm-mission">
+              <div class="card-title">Mission</div>
+              <ul class="list">
+                <li>To create a holistic training methodology combining Yoga, Nritta, and Abhinaya</li>
+                <li>To promote conscious biomechanics and breath-integrated movement</li>
+                <li>To prevent and rehabilitate physical and psychological injuries in dancers</li>
+                <li>To develop expressive authenticity rooted in bhava and self-awareness</li>
+                <li>To offer a research-driven and tradition-rooted movement education system</li>
+              </ul>
+            </div>
+            <div class="vm-panel" id="vm-objectives">
+              <div class="card-title">Objectives</div>
+              <ul class="list two-col-list">
+                <li>To promote and propagate integrative movement education combining Yoga and Indian classical dance.</li>
+                <li>To conduct training programs, workshops, retreats, and certification courses.</li>
+                <li>To research injury prevention and rehabilitation methods for performing artists.</li>
+                <li>To promote emotional and psychological well-being through embodied arts.</li>
+                <li>To establish centers for holistic dance education.</li>
+                <li>To collaborate with national and international institutions.</li>
+                <li>To publish educational material and research in the field of movement sciences.</li>
+                <li>To provide scholarships and outreach programs for underprivileged artists.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
@@ -1216,50 +1418,19 @@
         <div class="section-title">Dance Poses & Group Mudras</div>
 
         <div class="gallery-wrapper">
-          <div class="gallery-main">
-            <!-- Slide 1 -->
-            <div class="gallery-slide active" data-slide="1">
-              <img src="assets/gallery-1.jpg" alt="Dance pose 1" />
-            </div>
-            <!-- Slide 2 -->
-            <div class="gallery-slide" data-slide="2">
-              <img src="assets/gallery-2.jpg" alt="Dance pose 2" />
-            </div>
-            <!-- Slide 3 -->
-            <div class="gallery-slide" data-slide="3">
-              <img src="assets/gallery-3.jpg" alt="Group pose 3" />
-            </div>
-            <!-- Slide 4 -->
-            <div class="gallery-slide" data-slide="4">
-              <img src="assets/gallery-4.jpg" alt="Group pose 4" />
-            </div>
-             <!-- Slide 5 -->
-            <div class="gallery-slide" data-slide="5">
-              <img src="assets/gallery-5.jpg" alt="Group pose 5" />
-            </div>
-            <!-- Slide 6 -->
-            <div class="gallery-slide" data-slide="6">
-              <img src="assets/gallery-6.jpg" alt="Group pose 6" />
-            </div>
-             <!-- Slide 7 -->
-            <div class="gallery-slide" data-slide="7">
-              <img src="assets/gallery-7.jpg" alt="Group pose 7" />
+          <div class="gallery-carousel-wrap">
+            <div class="gallery-carousel-track" id="galleryCarouselTrack">
+              <div class="gallery-carousel-item"><img src="assets/gallery-1.jpg" alt="Dance pose 1" /></div>
+              <div class="gallery-carousel-item"><img src="assets/gallery-2.jpg" alt="Dance pose 2" /></div>
+              <div class="gallery-carousel-item"><img src="assets/gallery-3.jpg" alt="Group pose 3" /></div>
+              <div class="gallery-carousel-item"><img src="assets/gallery-4.jpg" alt="Group pose 4" /></div>
+              <div class="gallery-carousel-item"><img src="assets/gallery-5.jpg" alt="Group pose 5" /></div>
+              <div class="gallery-carousel-item"><img src="assets/gallery-6.jpg" alt="Group pose 6" /></div>
+              <div class="gallery-carousel-item"><img src="assets/gallery-7.jpg" alt="Group pose 7" /></div>
             </div>
           </div>
-
-          <div class="gallery-controls">
-            <button class="gallery-dot active" data-target="1">1</button>
-            <button class="gallery-dot" data-target="2">2</button>
-            <button class="gallery-dot" data-target="3">3</button>
-            <button class="gallery-dot" data-target="4">4</button>
-            <button class="gallery-dot" data-target="5">5</button>
-            <button class="gallery-dot" data-target="6">6</button>
-            <button class="gallery-dot" data-target="7">7</button>
-          </div>
-
-          <p class="gallery-note">
-           Dance Poses
-          </p>
+          <div class="gallery-carousel-dots" id="galleryCarouselDots"></div>
+          <p class="gallery-note">Dance Poses · Scroll or swipe · Auto-advances</p>
         </div>
       </section>
 
@@ -1287,43 +1458,27 @@
         </div>
       </section>
 
-      <!-- VIDEO PLAYLIST -->
+      <!-- VIDEO PLAYLIST – watch on YouTube (embed often fails with Error 153) -->
       <section id="playlist">
         <div class="section-label">Videos</div>
         <div class="section-title">Curated Performances – YouTube Playlist</div>
 
-        <div class="playlist-grid">
-          <div class="card">
-            <div class="card-title">Featured Works</div>
-            <div class="card-heading">Selected Performances & Choreographies</div>
-            <p>
-              A curated playlist featuring solo and ensemble works, experiments in space and rhythm,
-              and explorations from the Natyoga Darshanam practice. Ideal for programmers, curators,
-              collaborators and students to experience the range of Rajadarshini's artistic language.
-            </p>
-            <div class="pill-row">
-              <span class="pill">Classical repertoire</span>
-              <span class="pill">Contemporary explorations</span>
-              <span class="pill">Site-specific work</span>
-            </div>
-          </div>
-
-          <div>
-            <a
-              class="playlist-cta"
-              href="https://youtube.com/playlist?list=PLENscC7haOfhuApcf1CWit1GX_Xono1iQ"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <span class="playlist-cta-icon" aria-hidden="true">▶</span>
-              <span class="playlist-cta-text">Watch playlist on YouTube</span>
-              <span class="playlist-cta-hint">Opens in new tab</span>
-            </a>
-            <p class="playlist-fallback-note">
-              Performances and choreographies are on YouTube. Use the button above to open the full playlist.
-            </p>
-          </div>
-        </div>
+        <p class="playlist-intro">
+          A curated playlist featuring solo and ensemble works, experiments in space and rhythm, and explorations from the Natyoga Darshanam practice.
+        </p>
+        <p class="playlist-why-note">
+          YouTube often blocks embedded playlists on external sites (e.g. "Error 153" or playback disabled). To watch reliably, please use the button below — the full playlist will open on YouTube and play there.
+        </p>
+        <a
+          class="playlist-cta"
+          href="https://youtube.com/playlist?list=PLENscC7haOfhuApcf1CWit1GX_Xono1iQ"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span class="playlist-cta-icon" aria-hidden="true">▶</span>
+          <span class="playlist-cta-text">Watch playlist on YouTube</span>
+          <span class="playlist-cta-hint">Opens in new tab · Full playlist with all performances</span>
+        </a>
       </section>
 
       <!-- Testimonials -->
@@ -1444,68 +1599,87 @@ I strongly recommend this Yoga program to performing artists worldwide seeking h
         <p class="testimonials-hint">Scroll or swipe to see more</p>
       </section>
 
-      <!-- Offerings -->
+      <!-- Offerings – horizontal scroll, pricing-style cards with Enroll now -->
       <section id="offerings">
-        <div class="section-label">Offerings</div>
-        <div class="section-title">Ways to Train & Collaborate</div>
+        <div class="section-label">Courses &amp; Programs</div>
+        <div class="section-title">Ways to Train &amp; Collaborate</div>
 
-        <div class="offerings-grid">
-          <div class="offering-card">
-            <div class="offering-tag">Classes</div>
-            <div class="offering-title">Regular Training</div>
-            <div class="offering-body">
-              Online and in-person sessions for dancers, movers and beginners – combining technique,
-              conditioning and mindful alignment.
+        <div class="offerings-scroll">
+          <div class="offerings-cards">
+            <div class="offering-card">
+              <div class="offering-tag">Classes</div>
+              <div class="offering-title">Regular weekly Yoga–Natya classes</div>
+              <div class="offering-body">
+                Group classes, 1-1 private lessons, online &amp; offline — technique, conditioning and mindful alignment.
+              </div>
+              <div class="offering-cta"><a href="#contact">Enroll now</a></div>
             </div>
-            <div class="offering-footer">Schedule – coming soon</div>
-          </div>
-
-          <div class="offering-card">
-            <div class="offering-tag">Workshops</div>
-            <div class="offering-title">Intensive Labs</div>
-            <div class="offering-body">
-              Thematic labs on Bharatanatyam–yoga intersections, breathwork, creative process and somatic awareness.
+            <div class="offering-card">
+              <div class="offering-tag">Mentorship</div>
+              <div class="offering-title">Arangetram pre-performance intense training</div>
+              <div class="offering-body">
+                The Natyoga approach to Arangetram preparation and performance mentorship.
+              </div>
+              <div class="offering-cta"><a href="#contact">Enroll now</a></div>
             </div>
-            <div class="offering-footer">Details – coming soon</div>
-          </div>
-
-          <div class="offering-card">
-            <div class="offering-tag">Research & Residencies</div>
-            <div class="offering-title">Performing Spaces</div>
-            <div class="offering-body">
-              Interdisciplinary explorations that bring together architecture, ecology and performing arts.
+            <div class="offering-card">
+              <div class="offering-tag">Wellness</div>
+              <div class="offering-title">Injury prevention &amp; rehabilitation</div>
+              <div class="offering-body">
+                Program for performing artists — applied yoga in Bharatanatyam, performance mentorship.
+              </div>
+              <div class="offering-cta"><a href="#contact">Enroll now</a></div>
             </div>
-            <div class="offering-footer">Projects – coming soon</div>
-          </div>
-
-          <div class="offering-card">
-            <div class="offering-tag">Performance Coaching</div>
-            <div class="offering-title">Stage & Presence</div>
-            <div class="offering-body">
-              One-on-one guidance on choreography refinement, stage presence, repertoire polishing and audition prep.
+            <div class="offering-card">
+              <div class="offering-tag">Foundational series</div>
+              <div class="offering-title">Yogashilpa course</div>
+              <div class="offering-body">
+                Natyoga movement foundational series — stillness through dynamic movement.
+              </div>
+              <div class="offering-cta"><a href="#contact">Enroll now</a></div>
             </div>
-            <div class="offering-footer">Apply for coaching</div>
+            <div class="offering-card">
+              <div class="offering-tag">Advanced</div>
+              <div class="offering-title">Advanced Yoga for Dance Teachers</div>
+              <div class="offering-body">
+                Advanced exploration series for teachers and serious practitioners.
+              </div>
+              <div class="offering-cta"><a href="#contact">Enroll now</a></div>
+            </div>
+            <div class="offering-card">
+              <div class="offering-tag">Outreach</div>
+              <div class="offering-title">Village Outreach Program</div>
+              <div class="offering-body">
+                A not-for-profit vision where art is open for all beyond identity.
+              </div>
+              <div class="offering-cta"><a href="#contact">Enroll now</a></div>
+            </div>
           </div>
         </div>
+        <p class="gallery-note" style="margin-top: 10px;">Scroll or swipe to see more courses</p>
       </section>
 
       <!-- Contact / CTA -->
       <section id="contact">
         <div class="contact">
           <div>
-            <h2>Connect with Rajadarshini</h2>
+            <h2>Contact Us</h2>
             <p>
-              For performance bookings, workshops, classes, collaborations or research enquiries,
-              please reach out with your requirements. You'll receive a personalised response with
-              available slots and next steps.
+              For training programmes, workshops, retreats, certification courses, performance bookings, or research enquiries, reach out. You'll receive a personalised response with available slots and next steps.
             </p>
           </div>
           <div class="contact-info">
             <div>
+              <div class="contact-label">Website</div>
+              <div class="contact-value">
+                <a href="https://www.natyogadarshanam.org" target="_blank" rel="noreferrer">www.natyogadarshanam.org</a>
+              </div>
+            </div>
+            <div>
               <div class="contact-label">Email</div>
               <div class="contact-value">
-                <a href="mailto:rajadarshinisaravanan.natyoga@gmail.com">
-                  rajadarshinisaravanan.natyoga@gmail.com
+                <a href="mailto:Rajadarshinisaravanan.natyoga@gmail.com">
+                  Rajadarshinisaravanan.natyoga@gmail.com
                 </a>
               </div>
             </div>
@@ -1535,8 +1709,8 @@ I strongly recommend this Yoga program to performing artists worldwide seeking h
       </section>
 
       <footer>
-        <span>© <span id="year"></span> Rajadarshini Saravanan · All rights reserved</span>
-        <span>Portfolio site in progress · Detailed pages coming soon</span>
+        <span>© <span id="year"></span> Natyoga Darshanam · Founder Rajadarshini Saravanan · All rights reserved</span>
+        <span>Integrating Yoga &amp; Natya · Love · Joy · Meditative</span>
       </footer>
     </main>
   </div>
@@ -1544,20 +1718,50 @@ I strongly recommend this Yoga program to performing artists worldwide seeking h
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Simple numbered slider (1,2,3...)
-    const slides = document.querySelectorAll(".gallery-slide");
-    const dots = document.querySelectorAll(".gallery-dot");
+    // Gallery overlapping carousel – auto-scroll + dots (loops back to start)
+    (function () {
+      const track = document.getElementById("galleryCarouselTrack");
+      const dotsEl = document.getElementById("galleryCarouselDots");
+      if (!track || !dotsEl) return;
+      const items = track.querySelectorAll(".gallery-carousel-item");
+      const total = items.length;
+      const stepPx = window.innerWidth <= 640 ? 220 : 260; // 280-60 mobile, 340-80 desktop
+      let current = 0;
 
-    dots.forEach((dot) => {
-      dot.addEventListener("click", () => {
-        const target = dot.getAttribute("data-target");
+      for (let i = 0; i < total; i++) {
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "gallery-carousel-dot" + (i === 0 ? " active" : "");
+        dot.setAttribute("aria-label", "Go to slide " + (i + 1));
+        dot.addEventListener("click", () => goTo(i));
+        dotsEl.appendChild(dot);
+      }
+      const dots = dotsEl.querySelectorAll(".gallery-carousel-dot");
 
-        slides.forEach((slide) => {
-          slide.classList.toggle("active", slide.getAttribute("data-slide") === target);
-        });
+      function goTo(index) {
+        if (index < 0) index = total - 1;
+        if (index >= total) index = 0;
+        current = index;
+        track.style.transform = "translateX(-" + current * stepPx + "px)";
+        dots.forEach((d, i) => d.classList.toggle("active", i === current));
+      }
+      goTo(0);
 
-        dots.forEach((d) => d.classList.remove("active"));
-        dot.classList.add("active");
+      setInterval(function () {
+        goTo(current + 1);
+      }, 4500);
+    })();
+
+    // Vision / Mission / Objectives – side menu switch
+    document.querySelectorAll(".vm-sidebar-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.getAttribute("data-vm");
+        if (!id) return;
+        document.querySelectorAll(".vm-sidebar-btn").forEach((b) => b.classList.remove("active"));
+        document.querySelectorAll(".vm-panel").forEach((p) => p.classList.remove("active"));
+        btn.classList.add("active");
+        const panel = document.getElementById("vm-" + id);
+        if (panel) panel.classList.add("active");
       });
     });
 
