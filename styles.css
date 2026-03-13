@@ -241,6 +241,11 @@ a {
   );
 }
 
+.hero-bg-dancer img {
+  /* Keep dancer's upper body in frame on large screens */
+  object-position: 60% 20%;
+}
+
 .hero-tagline-poem {
   font-family: "Playfair Display", serif;
   font-size: clamp(15px, 2.2vw, 18px);
@@ -1016,81 +1021,67 @@ section {
   opacity: 0.95;
 }
 
-/* Gallery – overlapping carousel with auto-scroll */
+/* Gallery – responsive grid of large images */
 .gallery-wrapper {
-  border-radius: var(--radius-lg);
-  padding: 24px 0;
+  margin-top: 18px;
 }
-.gallery-carousel-wrap {
-  overflow: hidden;
-  margin: 0 -20px;
-  padding: 20px 20px 16px;
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
 }
-.gallery-carousel-track {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  transition: transform 0.6s ease;
-  will-change: transform;
-}
-.gallery-carousel-item {
-  flex: 0 0 520px;
-  width: 520px;
-  margin-right: -130px;
+
+.gallery-item {
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.18);
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  transition: transform 0.3s ease, z-index 0.3s ease;
+  background: #1d0b11;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
   position: relative;
-  z-index: 1;
 }
-.gallery-carousel-item:hover {
-  z-index: 3;
-  transform: scale(1.04);
-}
-.gallery-carousel-item img {
+
+.gallery-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
   display: block;
-  aspect-ratio: 3 / 2;
-  min-height: 380px;
-  background: #f5f0ea;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  transform: scale(1.02);
+  transition: transform 0.4s ease;
 }
-.gallery-carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 14px;
+
+.gallery-item::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.32) 0%, transparent 40%);
+  pointer-events: none;
 }
-.gallery-carousel-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background: rgba(75, 16, 37, 0.2);
-  cursor: pointer;
-  transition: background 0.25s ease, transform 0.25s ease;
+
+.gallery-item:hover img {
+  transform: scale(1.06);
 }
-.gallery-carousel-dot.active {
-  background: var(--maroon);
-  transform: scale(1.2);
+
+.gallery-caption {
+  position: absolute;
+  left: 12px;
+  bottom: 10px;
+  right: 12px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255, 245, 230, 0.96);
 }
-.gallery-note {
-  margin-top: 8px;
-  font-size: 11px;
-  color: var(--muted);
-  text-align: center;
-}
-@media (max-width: 640px) {
-  .gallery-carousel-item {
-    flex: 0 0 340px;
-    width: 340px;
-    margin-right: -80px;
+
+@media (max-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .gallery-carousel-item img {
-    min-height: 260px;
+}
+
+@media (max-width: 640px) {
+  .gallery-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -1596,49 +1587,88 @@ footer {
   }
 
   .hero {
-    min-height: 78vh;
+    min-height: 82vh;
   }
 
   .hero-bg-dancer img {
-    object-position: 60% center;
+    /* Shift focus slightly down so more of the torso + face appear */
+    object-position: 62% 40%;
   }
 
   .hero-content {
     padding: 32px 16px 40px;
+  }
+
+  /* Mobile: eyebrow + title as clear top block; quote smaller and aligned beside image */
+  .hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    max-width: none;
+  }
+
+  .eyebrow,
+  .hero-title {
+    text-align: center;
+  }
+
+  .hero-title {
+    margin-bottom: 125px;
+  }
+
+  .hero-tagline {
+    font-size: 13px;
+    line-height: 1.45;
+    /* max-width: 50%; */
+    margin-bottom: 12px;
+    /* margin-left: auto; */
+  }
+
+  .hero-tagline-poem {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .hero-quote-meta {
+    max-width: 50%;
+    margin-bottom: 14px;
+    /* margin-left: auto; */
   }
 }
 
 /* Very small screens: show full image, no crop (contain + dark fill) */
 @media (max-width: 480px) {
   .hero {
-    min-height: 85vh;
-    background: #2d0f1a;
-  }
-
-  .hero-bg-dancer {
-    background: #2d0f1a;
+    min-height: 80vh;
   }
 
   .hero-bg-dancer img {
     object-fit: contain;
-    object-position: center center;
+    object-position: 85% center;
   }
 
-  .hero-bg-dancer::after {
-    background: linear-gradient(
-      95deg,
-      rgba(75, 16, 37, 0.94) 0%,
-      rgba(75, 16, 37, 0.82) 35%,
-      rgba(75, 16, 37, 0.5) 65%,
-      transparent 100%
-    );
+  .hero-tagline {
+    font-size: 12px;
+    line-height: 1.45;
+    /* max-width: 48%; */
+    /* margin-left: auto; */
   }
+
+  .hero-tagline-poem {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  /* .hero-quote-meta {
+    max-width: 48%;
+    margin-left: auto;
+  } */
 }
 
   .contact {
     padding: 18px 16px 16px;
   }
-}
+
 
 
 /* Parallax – W3Schools-style: background fixed, moves at different speed while scrolling */
@@ -1741,7 +1771,7 @@ footer {
 .hero-tagline-poem {
   font-style: italic;
   font-family: "Playfair Display", serif;
-  font-size: 20px;
+  font-size: 14px;
   line-height: 1.6;
   letter-spacing: 0.03em;
 }
