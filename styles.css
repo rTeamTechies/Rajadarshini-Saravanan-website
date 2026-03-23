@@ -523,6 +523,24 @@ section {
   padding-top: 24px;
 }
 
+/* Keep anchor targets visible below the sticky header */
+#about {
+  scroll-margin-top: 92px;
+}
+
+#gallery,
+#videos {
+  scroll-margin-top: 92px;
+}
+
+#offerings {
+  scroll-margin-top: 92px;
+}
+
+#contact {
+  scroll-margin-top: 92px;
+}
+
 .section-label {
   font-size: 11px;
   text-transform: uppercase;

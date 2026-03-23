@@ -22,9 +22,9 @@
     <header class="nav">
       <div class="nav-inner">
         <div class="nav-left">
-          <div class="nav-logo">
+          <a href="#top" class="nav-logo" aria-label="Go to home">
             <img src="assets/logo1.jpeg" alt="Rajadarshini Saravanan" />
-          </div>
+          </a>
           <div class="nav-title">
             <div class="nav-title-main">Natyoga Darshanam</div>
             <div class="nav-title-sub">Natya + Yoga</div>
@@ -34,6 +34,7 @@
           <a href="#about">About Us</a>
           <a href="#gallery">Gallery</a>
           <a href="#videos">Videos</a>
+          <a href="#offerings">Courses</a>
           <a href="#contact">Reach Us</a>
           <a href="#offerings" class="nav-cta">
             Our Offerings
@@ -206,10 +207,10 @@
               <img src="assets/gallery-6.jpg" alt="Group pose 6" />
               <figcaption class="gallery-caption">Rhythm & geometry</figcaption>
             </figure>
-            <figure class="gallery-item">
+            <!-- <figure class="gallery-item">
               <img src="assets/gallery-7.jpg" alt="Group pose 7" />
               <figcaption class="gallery-caption">Closing tableau</figcaption>
-            </figure>
+            </figure> -->
           </div>
         </div>
       </section>
@@ -602,6 +603,24 @@ I strongly recommend this Yoga program to performing artists worldwide seeking h
         { rootMargin: "0px 0px -60px 0px", threshold: 0.05 }
       );
       els.forEach(function (el) { observer.observe(el); });
+    })();
+
+    // Nav anchor scroll: always scroll to target (even if hash is already the same)
+    (function () {
+      var navLinks = document.querySelectorAll('.nav-links a[href^="#"], .nav-logo[href^="#"]');
+      navLinks.forEach(function (link) {
+        link.addEventListener("click", function (e) {
+          var targetId = link.getAttribute("href");
+          if (!targetId) return;
+          var targetEl = document.querySelector(targetId);
+          if (!targetEl) return;
+          e.preventDefault();
+          targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (window.history && window.history.replaceState) {
+            window.history.replaceState(null, "", targetId);
+          }
+        });
+      });
     })();
 
     // Founder counters – animate numbers when About section enters view
