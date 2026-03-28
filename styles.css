@@ -919,6 +919,141 @@ section {
   background: #f1e0d1;
 }
 
+/* Method section – full-bleed black band (like Vision · Objectives), page-beige type only */
+.method-wrap {
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  margin-top: 8px;
+}
+
+.method-banner {
+  width: 100%;
+  overflow: hidden;
+  background: #050505;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.35);
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 0.92fr);
+  align-items: stretch;
+  min-height: min(520px, 70vh);
+}
+
+.method-banner__text {
+  padding: clamp(24px, 4vw, 44px) clamp(20px, 4vw, 48px) clamp(28px, 4vw, 48px);
+  color: var(--bg);
+}
+
+.method-banner__heading {
+  margin-bottom: 18px;
+}
+
+.method-banner__eyebrow {
+  margin: 0 0 8px;
+  font-size: 11px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--bg);
+  font-family: inherit;
+  font-weight: 400;
+}
+
+.method-banner__headline {
+  margin: 0 0 4px;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(22px, 4.2vw, 28px);
+  line-height: 1.12;
+  font-weight: 600;
+  color: var(--bg);
+}
+
+.method-banner__text > p,
+.method-banner__text .min-padding:not(.method-banner__quote) p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--bg);
+}
+
+/* Sanskrit, transliteration & English verse — gold tone + light highlight */
+.method-banner__quote {
+  padding: 14px 14px 14px 16px;
+  margin-top: 12px;
+  border-left: 2px solid rgba(217, 180, 106, 0.65);
+  background: linear-gradient(90deg, rgba(217, 180, 106, 0.1) 0%, rgba(217, 180, 106, 0.02) 45%, transparent 72%);
+  border-radius: 0 10px 10px 0;
+}
+
+.method-banner__quote p {
+  font-size: 14px;
+  line-height: 1.65;
+  color: rgba(217, 180, 106, 0.95);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-shadow: 0 0 24px rgba(217, 180, 106, 0.2);
+}
+
+.method-banner__quote.method-banner__verse p {
+  font-style: italic;
+}
+
+.method-banner__pills {
+  margin-top: 18px;
+}
+
+.method-banner__pills .pill {
+  background: rgba(247, 241, 234, 0.08);
+  color: var(--bg);
+  border: 1px solid rgba(247, 241, 234, 0.35);
+}
+
+.method-banner__pills .pill:hover {
+  background: rgba(247, 241, 234, 0.16);
+  color: var(--bg);
+  border-color: rgba(247, 241, 234, 0.55);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+}
+
+.method-banner__visual {
+  position: relative;
+  background: #000;
+  min-height: 280px;
+}
+
+.method-banner__visual img {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  object-fit: cover;
+  object-position: 56% 22%;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .method-banner {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .method-banner__visual {
+    min-height: 240px;
+    order: -1;
+  }
+
+  .method-banner__visual img {
+    min-height: 240px;
+    object-position: 52% 20%;
+  }
+
+  .method-banner__text {
+    padding-top: 20px;
+  }
+}
+
+@media (max-width: 640px) {
+  .method-banner {
+    border-radius: 0;
+  }
+}
+
 .list {
   margin-top: 8px;
   font-size: 13px;
