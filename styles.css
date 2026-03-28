@@ -529,6 +529,14 @@ section {
     transform: none;
     transition: none;
   }
+
+  #method.scroll-reveal .method-banner__visual img,
+  #method.scroll-reveal.is-visible .method-banner__visual img {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
 }
 
 /* Extra breathing room above testimonial avatars so they don't appear cropped */
@@ -1027,6 +1035,24 @@ section {
   display: block;
 }
 
+/* Method hero image: dissolve / soft appear when Movement Training section scrolls into view */
+#method.scroll-reveal .method-banner__visual img {
+  opacity: 0;
+  transform: scale(1.05);
+  filter: blur(14px) brightness(0.92);
+  transition:
+    opacity 1.05s ease-out,
+    transform 1.2s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 1s ease-out;
+}
+
+#method.scroll-reveal.is-visible .method-banner__visual img {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0) brightness(1);
+  transition-delay: 0.42s, 0.38s, 0.35s;
+}
+
 @media (max-width: 900px) {
   .method-banner {
     grid-template-columns: minmax(0, 1fr);
@@ -1041,6 +1067,10 @@ section {
   .method-banner__visual img {
     min-height: 240px;
     object-position: 52% 20%;
+  }
+
+  #method.scroll-reveal.is-visible .method-banner__visual img {
+    transition-delay: 0.28s, 0.24s, 0.22s;
   }
 
   .method-banner__text {
