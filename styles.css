@@ -1376,6 +1376,7 @@ section {
   height: 100%;
   display: block;
   object-fit: cover;
+  object-position: center center;
   aspect-ratio: 4 / 3;
   position: relative;
   z-index: 0;
@@ -1386,6 +1387,20 @@ section {
     opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1),
     transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
     filter 0.75s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/*
+ * Per-photo crop tuning (Performances gallery uses object-fit: cover).
+ * Adjust percentages until the subject sits where you want in the frame.
+ *   horizontal: lower % = show more left, higher % = more right
+ *   vertical: lower % = more top, higher % = more bottom
+ */
+.gallery-item img.gallery-img--focus-down {
+  object-position: center 30%;
+}
+
+.gallery-item img.gallery-img--focus-right {
+  object-position: 72% center;
 }
 
 .gallery-item.is-img-loaded img {
@@ -1402,6 +1417,46 @@ section {
   .gallery-item--wide {
     grid-column: span 2;
   }
+}
+
+.gallery-item--mosaic {
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.gallery-item--mosaic::before {
+  display: none;
+}
+
+.gallery-item--mosaic > .gallery-mosaic {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  min-height: clamp(200px, 28vw, 360px);
+}
+
+.gallery-item--mosaic .gallery-mosaic__tile {
+  margin: 0;
+  min-height: 0;
+  border-radius: 14px;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item--mosaic .gallery-mosaic__tile img {
+  width: 100%;
+  height: 100%;
+  min-height: 120px;
+  /* aspect-ratio: 1; */
+  object-fit: cover;
+  object-position: center center;
 }
 
 @media (prefers-reduced-motion: reduce) {
