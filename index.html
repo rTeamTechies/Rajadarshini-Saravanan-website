@@ -242,41 +242,173 @@
         </div>
       </section>
 
-      <!-- DANCE GALLERY SLIDER -->
+      <!-- Gallery – grouped collections -->
       <section id="gallery" class="scroll-reveal">
         <div class="section-label">Gallery</div>
-        <div class="section-title">Dance Poses & Group Mudras</div>
+        <div class="section-title">Performances · Workshops · Natyoga Architecture</div>
+        <p class="gallery-lead">
+          Choose a collection to explore stage work, teaching immersions, and the spaces that hold the practice.
+        </p>
 
-        <div class="gallery-wrapper">
-          <div class="gallery-grid">
-            <figure class="gallery-item">
-              <img src="assets/gallery-1.jpg" alt="Dance pose 1" />
-              <figcaption class="gallery-caption">Solo pose</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <img src="assets/gallery-2.jpg" alt="Dance pose 2" />
-              <figcaption class="gallery-caption">Abhinaya detail</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <img src="assets/gallery-3.jpg" alt="Group pose 3" />
-              <figcaption class="gallery-caption">Group choreography</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <img src="assets/gallery-4.jpg" alt="Group pose 4" />
-              <figcaption class="gallery-caption">Ensemble lines</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <img src="assets/gallery-5.jpg" alt="Group pose 5" />
-              <figcaption class="gallery-caption">Stage performance</figcaption>
-            </figure>
-            <figure class="gallery-item">
-              <img src="assets/gallery-6.jpg" alt="Group pose 6" />
-              <figcaption class="gallery-caption">Rhythm & geometry</figcaption>
-            </figure>
-            <!-- <figure class="gallery-item">
-              <img src="assets/gallery-7.jpg" alt="Group pose 7" />
-              <figcaption class="gallery-caption">Closing tableau</figcaption>
-            </figure> -->
+        <div class="gallery-wrapper" id="galleryRoot">
+          <div class="gallery-tabs" role="tablist" aria-label="Gallery collections">
+            <button
+              type="button"
+              class="gallery-tab is-active"
+              role="tab"
+              id="gallery-tab-performances"
+              aria-selected="true"
+              aria-controls="gallery-panel-performances"
+              data-gallery-tab="performances"
+            >
+              Performances
+            </button>
+            <button
+              type="button"
+              class="gallery-tab"
+              role="tab"
+              id="gallery-tab-workshops"
+              aria-selected="false"
+              aria-controls="gallery-panel-workshops"
+              data-gallery-tab="workshops"
+            >
+              Workshops
+            </button>
+            <button
+              type="button"
+              class="gallery-tab"
+              role="tab"
+              id="gallery-tab-architecture"
+              aria-selected="false"
+              aria-controls="gallery-panel-architecture"
+              data-gallery-tab="architecture"
+            >
+              Natyoga Architecture
+            </button>
+          </div>
+
+          <div class="gallery-panels">
+            <div
+              class="gallery-panel is-active"
+              id="gallery-panel-performances"
+              role="tabpanel"
+              aria-labelledby="gallery-tab-performances"
+              aria-hidden="false"
+              data-gallery-panel="performances"
+            >
+              <div class="gallery-grid">
+                <figure class="gallery-item">
+                  <img src="assets/Gallery/Performances/1.jpg" alt="Natyoga performance" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="gallery-item">
+                  <img src="assets/Gallery/Performances/3R7A5551.JPG" alt="Stage performance" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="gallery-item">
+                  <img src="assets/Gallery/Performances/3R7A9044.JPG" alt="Performance moment" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="gallery-item">
+                  <img src="assets/Gallery/Performances/IMG_1586.JPG" alt="Performance" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="gallery-item gallery-item--wide">
+                  <img
+                    src="assets/Gallery/Performances/Rajadarshini%20Saravanan%20-%20Sugunanjali%202025%20%282%29.jpg"
+                    alt="Rajadarshini Saravanan — Sugunanjali performance"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              </div>
+            </div>
+
+            <div
+              class="gallery-panel"
+              id="gallery-panel-workshops"
+              role="tabpanel"
+              aria-labelledby="gallery-tab-workshops"
+              aria-hidden="true"
+              data-gallery-panel="workshops"
+            >
+              <div class="gallery-grid">
+                <figure class="gallery-item">
+                  <img
+                    src="assets/Gallery/Workshops/International%20Seminar_Kodaikanal%20SHAPE%20Program%20for%20Women.jpg"
+                    alt="International seminar — Kodaikanal SHAPE program for women"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <figure class="gallery-item">
+                  <img
+                    src="assets/Gallery/Workshops/Puppy%20Yoga-Scooby_s%20International%20Yoga%20Day.jpg"
+                    alt="Puppy yoga — International Yoga Day"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <figure class="gallery-item">
+                  <img
+                    src="assets/Gallery/Workshops/V2%20Health%20Studio-Wellness%20and%20Breathwork.jpg"
+                    alt="V2 Health Studio — wellness and breathwork"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <figure class="gallery-item">
+                  <img
+                    src="assets/Gallery/Workshops/Yoga%20for%20Dancers%2C%20Lila%20Arts%20Centre.jpg"
+                    alt="Yoga for dancers — Lila Arts Centre"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <figure class="gallery-item">
+                  <img
+                    src="assets/Gallery/Workshops/Yoga%20for%20Stress%20Management%20-%20Nallas%20Corporate%20Wellness%2C%20Coimbatore.jpg"
+                    alt="Yoga for stress management — corporate wellness, Coimbatore"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+                <figure class="gallery-item">
+                  <img
+                    src="assets/Gallery/Workshops/Youth%20Seminar_Babuji%20Memorial%20Ashram%2C%20Chennai.jpg"
+                    alt="Youth seminar — Babuji Memorial Ashram, Chennai"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </figure>
+              </div>
+            </div>
+
+            <div
+              class="gallery-panel"
+              id="gallery-panel-architecture"
+              role="tabpanel"
+              aria-labelledby="gallery-tab-architecture"
+              aria-hidden="true"
+              data-gallery-panel="architecture"
+            >
+              <div class="gallery-grid">
+                <figure class="gallery-item">
+                  <img src="assets/Gallery/Natyoga%20Architecture/4D5A3940.JPG" alt="Natyoga architecture" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="gallery-item">
+                  <img src="assets/Gallery/Natyoga%20Architecture/4D5A4031.JPG" alt="Practice space" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="gallery-item">
+                  <img src="assets/Gallery/Natyoga%20Architecture/4D5A4093.JPG" alt="Movement space" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="gallery-item">
+                  <img src="assets/Gallery/Natyoga%20Architecture/4D5A4101.JPG" alt="Studio architecture" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="gallery-item">
+                  <img src="assets/Gallery/Natyoga%20Architecture/4D5A4107.JPG" alt="Natyoga space" loading="lazy" decoding="async" />
+                </figure>
+                <figure class="gallery-item">
+                  <img src="assets/Gallery/Natyoga%20Architecture/4D5A4150%20copy.jpg" alt="Architectural detail" loading="lazy" decoding="async" />
+                </figure>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -611,8 +743,178 @@ I strongly recommend this Yoga program to performing artists worldwide seeking h
     </main>
   </div>
 
+  <div
+    id="galleryLightbox"
+    class="gallery-lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Enlarged gallery image"
+    hidden
+  >
+    <div class="gallery-lightbox__backdrop" data-lightbox-close tabindex="-1"></div>
+    <button type="button" class="gallery-lightbox__close" aria-label="Close image preview">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <figure class="gallery-lightbox__frame">
+      <img
+        class="gallery-lightbox__img"
+        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        alt=""
+        decoding="async"
+      />
+    </figure>
+  </div>
+
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Gallery – tabbed collections (Performances / Workshops / Natyoga Architecture)
+    (function () {
+      var root = document.getElementById("galleryRoot");
+      if (!root) return;
+      var tablist = root.querySelector(".gallery-tabs");
+      var tabs = [].slice.call(root.querySelectorAll(".gallery-tab[data-gallery-tab]"));
+      var panels = [].slice.call(root.querySelectorAll(".gallery-panel[data-gallery-panel]"));
+      if (!tabs.length || !panels.length) return;
+
+      function activate(id) {
+        tabs.forEach(function (tab) {
+          var on = tab.getAttribute("data-gallery-tab") === id;
+          tab.classList.toggle("is-active", on);
+          tab.setAttribute("aria-selected", on ? "true" : "false");
+          tab.tabIndex = on ? 0 : -1;
+        });
+        panels.forEach(function (panel) {
+          var on = panel.getAttribute("data-gallery-panel") === id;
+          panel.classList.toggle("is-active", on);
+          panel.setAttribute("aria-hidden", on ? "false" : "true");
+        });
+      }
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          activate(tab.getAttribute("data-gallery-tab"));
+        });
+      });
+
+      tabs.forEach(function (t) {
+        t.tabIndex = t.classList.contains("is-active") ? 0 : -1;
+      });
+
+      if (tablist) {
+        tablist.addEventListener("keydown", function (e) {
+          var i = tabs.indexOf(document.activeElement);
+          if (i < 0) return;
+          var next = i;
+          if (e.key === "ArrowRight" || e.key === "ArrowDown") {
+            next = (i + 1) % tabs.length;
+          } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
+            next = (i - 1 + tabs.length) % tabs.length;
+          } else if (e.key === "Home") {
+            next = 0;
+          } else if (e.key === "End") {
+            next = tabs.length - 1;
+          } else {
+            return;
+          }
+          e.preventDefault();
+          tabs[next].focus();
+          activate(tabs[next].getAttribute("data-gallery-tab"));
+        });
+      }
+    })();
+
+    // Gallery images – reveal when each photo finishes loading (blur → sharp + shimmer off)
+    (function () {
+      var root = document.getElementById("galleryRoot");
+      if (!root) return;
+      function markLoaded(img) {
+        var fig = img.closest(".gallery-item");
+        if (fig) fig.classList.add("is-img-loaded");
+      }
+      root.querySelectorAll(".gallery-item img").forEach(function (img) {
+        if (img.complete && img.naturalWidth > 0) {
+          markLoaded(img);
+        } else {
+          img.addEventListener(
+            "load",
+            function onImgLoad() {
+              img.removeEventListener("load", onImgLoad);
+              markLoaded(img);
+            },
+            { once: true }
+          );
+          img.addEventListener(
+            "error",
+            function onImgErr() {
+              img.removeEventListener("error", onImgErr);
+              markLoaded(img);
+            },
+            { once: true }
+          );
+        }
+      });
+    })();
+
+    // Gallery lightbox – click image for full-size preview, close with × / backdrop / Escape
+    (function () {
+      var root = document.getElementById("galleryRoot");
+      var lb = document.getElementById("galleryLightbox");
+      if (!root || !lb) return;
+      var lbImg = lb.querySelector(".gallery-lightbox__img");
+      var closeBtn = lb.querySelector(".gallery-lightbox__close");
+      var backdrop = lb.querySelector("[data-lightbox-close]");
+      if (!lbImg || !closeBtn || !backdrop) return;
+
+      var prevFocus = null;
+
+      function openLightbox(src, alt) {
+        if (!src) return;
+        prevFocus = document.activeElement;
+        lbImg.src = src;
+        lbImg.alt = alt || "";
+        lb.removeAttribute("hidden");
+        lb.classList.add("is-open");
+        document.body.classList.add("gallery-lightbox-open");
+        closeBtn.focus();
+      }
+
+      var placeholderSrc =
+        "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
+      function closeLightbox() {
+        if (!lb.classList.contains("is-open")) return;
+        lb.classList.remove("is-open");
+        lb.setAttribute("hidden", "");
+        lbImg.src = placeholderSrc;
+        lbImg.alt = "";
+        document.body.classList.remove("gallery-lightbox-open");
+        if (prevFocus && typeof prevFocus.focus === "function") {
+          prevFocus.focus();
+        }
+      }
+
+      root.addEventListener("click", function (e) {
+        var img = e.target.closest(".gallery-panel .gallery-item img");
+        if (!img) return;
+        e.preventDefault();
+        var fullSrc = img.currentSrc || img.getAttribute("src");
+        openLightbox(fullSrc, img.getAttribute("alt") || "");
+      });
+
+      closeBtn.addEventListener("click", closeLightbox);
+      backdrop.addEventListener("click", closeLightbox);
+      lb.addEventListener("click", function (e) {
+        if (e.target === lb) closeLightbox();
+      });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.key !== "Escape") return;
+        if (!lb.classList.contains("is-open")) return;
+        e.preventDefault();
+        closeLightbox();
+      });
+    })();
 
     // Gallery overlapping carousel – auto-scroll + dots (loops back to start)
     (function () {
